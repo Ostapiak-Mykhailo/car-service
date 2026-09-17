@@ -12,11 +12,11 @@ public class ConsoleReader {
         return READER.readLine();
     }
 
-    public void SuggestOptions(){
+    public void suggestOptions(){
         String string = """
                 Please choose action you would like to do:
                 Enter '0' to exit the program
-                Enter '1' to add your car to the dataBase
+                Enter '1' to add new record to the dataBase
                 Enter '2' to see record by number
                 Enter '3' to see the whole table
                 Enter '4' to update record
@@ -35,5 +35,14 @@ public class ConsoleReader {
             }
         }
         return number;
+    }
+
+    public void suggestTable(){
+        String message = """
+                Enter 'cars' if you want to interact with car table
+                Enter 'owners' if you want to interact with owner table
+                Enter 'back' to get back to previous menu
+                """;
+        System.out.println(message);
     }
 }

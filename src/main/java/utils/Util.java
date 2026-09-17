@@ -5,15 +5,16 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class Util {
-    private static final Properties PROPERTIES = new Properties();
+    private static final Properties PROPERTIES = loadProperties();
 
-    static {
-        loadProperties();
-    }
-
-    public static void loadProperties() {
+    private static Properties loadProperties() {
+        Properties properties = new Properties();
         try (InputStream stream = Util.class.getClassLoader().getResourceAsStream("application.properties")) {
-            PROPERTIES.load(stream);
+            if (stream == null) {
+                throw new RuntimeException("application.properties not found");
+            }
+            properties.load(stream);
+            return properties;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
